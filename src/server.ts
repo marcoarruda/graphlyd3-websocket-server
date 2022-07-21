@@ -1,18 +1,30 @@
-// src/server.ts
 import * as express from "express";
+import { Express, Request, Response } from "express";
+
+import * as path from "path";
+
+import * as http from "http";
+import { Server } from "http";
+
+import * as socketio from "socket.io";
 
 const app = express();
-app.set("port", process.env.PORT || 3000);
-
-var http = require("http").Server(app);
-
-// simple '/' endpoint sending a Hello World
-// response
-app.get("/", (req: any, res: any) => {
-  res.send("hello world");
+const server = http.createServer(app);
+const io = new socketio.Server(server, {
+  allowEIO3: true,
 });
 
-// start our simple server up on localhost:3000
-const server = http.listen(3000, function () {
+app.get("/", (req: Request, res: Response) => {
+  res.sendFile(path.resolve("./client/index.html"));
+});
+
+io.on("connection", (socket) => {
+  console.log("a user connected");
+  socket.on("message", (message) => {
+    socket.emit("received", message);
+  });
+});
+
+server.listen(3000, () => {
   console.log("listening on *:3000");
 });
