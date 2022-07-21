@@ -2,12 +2,13 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = require("express");
 const path = require("path");
-const http = require("http");
-const socketio = require("socket.io");
 const app = express();
+const http = require("http");
 const server = http.createServer(app);
+const socketio = require("socket.io");
 const io = new socketio.Server(server, {
     allowEIO3: true,
+    cors: { allowedHeaders: ["*"] },
 });
 app.get("/", (req, res) => {
     res.sendFile(path.resolve("./client/index.html"));
