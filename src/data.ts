@@ -40,17 +40,39 @@ const node02: Node = {
   },
 };
 
-const nodes: Node[] = [node01, node02];
+const node03: Node = {
+  id: "node3",
+  shape: {
+    type: "hexagon",
+    scale: 2,
+  },
+  x: 150,
+  y: -50,
+  payload: {
+    title: "node 02",
+    color: "purple",
+  },
+};
+
+const nodes: Node[] = [node01, node02, node03];
 
 const links: Link[] = [
-  {
-    source: "node1",
-    target: "node2",
-    type: LinkType.Dashed,
-    directed: true,
-    label: "link name",
-    strength: LinkStrength.Strong,
-  },
+    {
+      source: "node1",
+      target: "node2",
+      type: LinkType.Dashed,
+      directed: true,
+      label: "link name",
+      strength: LinkStrength.Strong,
+    },
+    {
+      source: "node1",
+      target: "node3",
+      type: LinkType.Dashed,
+      directed: true,
+      label: "link name",
+      strength: LinkStrength.Strong,
+    },
 ];
 
 export const state: Graph = {

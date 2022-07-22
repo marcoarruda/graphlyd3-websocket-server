@@ -77,6 +77,20 @@ io.on("connection", async (socket) => {
     selectNodeById(state, node_id, user);
     io.emit("update", state);
   });
+  socket.on("deselect", (user_id) => {
+    const user = users.find((user) => user.id === user_id);
+    deselectNodesByUser(state, user);
+    io.emit("update", state);
+  });
+  socket.on("push-node", (data) => {
+    console.log("on push-node");
+    const { node_id, position } = data;
+    console.log(position);
+    let stateNode = state.nodes.find((node) => node.id === node_id);
+    stateNode.x = position.x;
+    stateNode.y = position.y;
+    io.emit("update", state);
+  });
   socket.on("disconnect", () => {
     console.log(users);
     const user = users.find((user) => user.id === socket.id);
