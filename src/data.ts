@@ -33,7 +33,7 @@ const node02: Node = {
     scale: 2,
   },
   x: 150,
-  y: 0,
+  y: 150,
   payload: {
     title: "node 02",
     color: "purple",
@@ -46,8 +46,8 @@ const node03: Node = {
     type: "hexagon",
     scale: 2,
   },
-  x: 150,
-  y: -50,
+  x: 50,
+  y: -100,
   payload: {
     title: "node 02",
     color: "purple",
