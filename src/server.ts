@@ -11,7 +11,7 @@ const server = http.createServer(app);
 
 import * as socketio from "socket.io";
 const io = new socketio.Server(server, {
-  allowEIO3: true,
+  // allowEIO3: true,
   cors: { allowedHeaders: ["*"] },
 });
 
